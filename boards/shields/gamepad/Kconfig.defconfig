@@ -1,0 +1,14 @@
+if SHIELD_GAMEPAD
+
+config ZMK_KEYBOARD_NAME
+    default "Gamepad"
+
+# 开启蓝牙、USB键盘必需开关
+config USB_DEVICE_STACK
+    default y
+config BT_HCI
+    default y
+config ZMK_BLE
+    default y
+
+endif
