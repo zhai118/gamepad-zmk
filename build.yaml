@@ -1,9 +1,8 @@
 on: [push, workflow_dispatch]
+
 jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
-    strategy:
-      matrix:
-        target:
-          - board: promicro_nrf52840
-            shield: gamepad
+    with:
+      board: promicro_nrf52840
+      shield: gamepad
