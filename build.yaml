@@ -1,4 +1,4 @@
-file_format: "1"
+file_format: 1
 targets:
   - board: promicro_nrf52840
     shield: gamepad
