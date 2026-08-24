@@ -4,6 +4,8 @@
 / {
     kscan_direct: kscan-direct {
         compatible = "zmk,kscan-gpio-direct";
+        // 关键修复：告诉ZMK一共12个按键
+        zmk,matrix-transform = <MATRIX_TRANSFORM_DIRECT(12)>;
         debounce-press-ms = <10>;
         debounce-release-ms = <18>;
         poll-period-ms = <10>;
