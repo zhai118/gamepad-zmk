@@ -4,9 +4,8 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
-    compatible = "zmk,shield-gamepad";
-    model = "Gamepad 12key Controller";
-
+	compatible = "zmk,keymap-shield";
+	model = "gamepad";
     gpio_keys {
         compatible = "zmk,gpio-keys";
         status = "okay";
