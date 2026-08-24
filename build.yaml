@@ -1,0 +1,2 @@
+include:
+  - board: promicro_nrf52840
