@@ -1,57 +1,23 @@
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/bt.h>
 
 / {
-    compatible = "zmk,shield";
-    board-name = "12key-silicone-gamepad";
-
-    kscan0: kscan {
-        compatible = "zmk,kscan-gpio-matrix";
-        wakeup-source;
-        gpios =
-            // 1 W
-            <&gpio0 17 GPIO_ACTIVE_LOW>,
-            // 2 A
-            <&gpio0 20 GPIO_ACTIVE_LOW>,
-            // 3 S
-            <&gpio0 22 GPIO_ACTIVE_LOW>,
-            // 4 D
-            <&gpio0 24 GPIO_ACTIVE_LOW>,
-            // 5 空格
-            <&gpio0 09 GPIO_ACTIVE_LOW>,
-            // 6 F
-            <&gpio1 04 GPIO_ACTIVE_LOW>,
-            // 7 E
-            <&gpio0 10 GPIO_ACTIVE_LOW>,
-            // 8 上方向
-            <&gpio0 11 GPIO_ACTIVE_LOW>,
-            // 9 下方向
-            <&gpio1 11 GPIO_ACTIVE_LOW>,
-            // 10 R
-            <&gpio1 00 GPIO_ACTIVE_LOW>,
-            // 11 左Alt
-            <&gpio1 06 GPIO_ACTIVE_LOW>,
-            // 12 Tab
-            <&gpio1 13 GPIO_ACTIVE_LOW>;
-    };
-
     keymap {
         compatible = "zmk,keymap";
+
         default_layer {
-            bindings = <
-                &kp W
-                &kp A
-                &kp S
-                &kp D
-                &kp SPACE
-                &kp F
-                &kp E
-                &kp UP
-                &kp DOWN
-                &kp R
-                &kp LALT
-                &kp TAB
-            >;
+            bindings =
+                &kp W,
+                &kp A,
+                &kp S,
+                &kp D,
+                &kp SPACE,
+                &kp F,
+                &kp E,
+                &kp UP,
+                &kp DOWN,
+                &kp R,
+                &kp LALT,
+                &kp TAB;
         };
     };
 };
