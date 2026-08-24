@@ -7,14 +7,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build firmware
-        uses: zmkfirmware/zmk-build-action@v2
+      - name: Build ZMK Firmware
+        uses: zmkfirmware/zmk-build-action@main
         with:
           board: promicro_nrf52840
           shield: gamepad
-          # 关闭那个导致qualifiers报错的冗余硬件校验
-          extra_args: --no-sysbuild-check
-
