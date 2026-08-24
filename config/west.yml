@@ -9,6 +9,3 @@ manifest:
       import: app/west.yml
   self:
     path: config
-    # 关键配置：把你的自定义硬件dts目录加入编译检索
-    import:
-      - .
