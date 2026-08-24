@@ -1,5 +1,0 @@
-# SPDX-License-Identifier: MIT
-config SHIELD_GAMEPAD
-    def_bool $(shield_enabled)
-    help
-        12键游戏手柄自定义Shield
