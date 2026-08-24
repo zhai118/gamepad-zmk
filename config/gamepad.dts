@@ -1,83 +1,47 @@
-/dts-v1/;
-#include <zephyr/dt-bindings/gpio/gpio.h>
-#include <dt-bindings/zmk/gpio.h>
+#include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/gpio/gpio.h>
 
 / {
-	compatible = "zmk,keymap-shield";
-	model = "gamepad";
-    gpio_keys {
-        compatible = "zmk,gpio-keys";
-        status = "okay";
-
-        /* 格式：label = "按键名"; gpios = <&gpioX 引脚号 GPIO_PULL_UP>; */
-        key_w: key_w {
-            label = "W";
-            gpios = <&gpio0 17 GPIO_PULL_UP>;
-            bindings = <&kp W>;
-        };
-        key_a: key_a {
-            label = "A";
-            gpios = <&gpio0 20 GPIO_PULL_UP>;
-            bindings = <&kp A>;
-        };
-        key_s: key_s {
-            label = "S";
-            gpios = <&gpio0 22 GPIO_PULL_UP>;
-            bindings = <&kp S>;
-        };
-        key_d: key_d {
-            label = "D";
-            gpios = <&gpio0 24 GPIO_PULL_UP>;
-            bindings = <&kp D>;
-        };
-        key_space: key_space {
-            label = "SPACE";
-            gpios = <&gpio0 09 GPIO_PULL_UP>;
-            bindings = <&kp SPACE>;
-        };
-        key_f: key_f {
-            label = "F";
-            gpios = <&gpio1 04 GPIO_PULL_UP>;
-            bindings = <&kp F>;
-        };
-        key_e: key_e {
-            label = "E";
-            gpios = <&gpio0 10 GPIO_PULL_UP>;
-            bindings = <&kp E>;
-        };
-        key_up: key_up {
-            label = "UP";
-            gpios = <&gpio0 11 GPIO_PULL_UP>;
-            bindings = <&kp UP>;
-        };
-        key_down: key_down {
-            label = "DOWN";
-            gpios = <&gpio1 11 GPIO_PULL_UP>;
-            bindings = <&kp DOWN>;
-        };
-        key_r: key_r {
-            label = "R";
-            gpios = <&gpio1 00 GPIO_PULL_UP>;
-            bindings = <&kp R>;
-        };
-        key_alt: key_alt {
-            label = "LEFT_ALT";
-            gpios = <&gpio1 06 GPIO_PULL_UP>;
-            bindings = <&kp LALT>;
-        };
-        key_tab: key_tab {
-            label = "TAB";
-            gpios = <&gpio1 13 GPIO_PULL_UP>;
-            bindings = <&kp TAB>;
-        };
+    chosen {
+        // 指定按键扫描控制器
+        zmk,kscan = &kscan_direct;
     };
-};
 
-&usb_hid {
-    status = "okay";
-};
+    // 12个独立按键扫描配置
+    kscan_direct: kscan-direct {
+        compatible = "zmk,kscan-gpio-direct";
+        // 消抖参数，游戏手柄推荐
+        debounce-press-ms = <10>;
+        debounce-release-ms = <18>;
+        poll-period-ms = <10>;
 
-&ble {
-    status = "okay";
+        // 12路IO，开启内部上拉 GPIO_PULL_UP
+        // 按下 = 拉低，所以 GPIO_ACTIVE_LOW
+        input-gpios =
+            // 1: W
+            <&gpio0 17 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            // 2: A
+            <&gpio0 20 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            // 3: S
+            <&gpio0 22 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            // 4: D
+            <&gpio0 24 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            // 5: 空格 SPACE
+            <&gpio0 09 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            // 6: F
+            <&gpio1 04 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            // 7: E
+            <&gpio0 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            // 8: 上方向键 UP
+            <&gpio0 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            // 9: 下方向键 DOWN
+            <&gpio1 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            // 10: R
+            <&gpio1 00 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            // 11: ALT
+            <&gpio1 06 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            // 12: TAB
+            <&gpio1 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    };
 };
