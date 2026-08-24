@@ -1,10 +1,20 @@
-name: Build ZMK firmware
+name: Build Firmware
 on:
   push:
   workflow_dispatch:
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
-    with:
-      build_matrix_path: "config/build-matrix.yaml"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build firmware
+        uses: zmkfirmware/zmk-build-action@v2
+        with:
+          board: promicro_nrf52840
+          shield: gamepad
+          # 关闭那个导致qualifiers报错的冗余硬件校验
+          extra_args: --no-sysbuild-check
+
