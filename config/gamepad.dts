@@ -1,54 +1,43 @@
-#include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/zmk/keys.h>
 
 / {
-    chosen {
-        // 指定按键扫描控制器
-        zmk,kscan = &kscan_direct;
-    };
-
-    // 12个独立按键扫描配置
     kscan_direct: kscan-direct {
         compatible = "zmk,kscan-gpio-direct";
-        // 消抖参数，游戏手柄推荐
         debounce-press-ms = <10>;
         debounce-release-ms = <18>;
         poll-period-ms = <10>;
 
-        // 12路IO，开启内部上拉 GPIO_PULL_UP
-        // 按下 = 拉低，所以 GPIO_ACTIVE_LOW
         input-gpios =
-            // 1: W
+            //1 W
             <&gpio0 17 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
-            // 2: A
+            //2 A
             <&gpio0 20 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
-            // 3: S
+            //3 S
             <&gpio0 22 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
-            // 4: D
+            //4 D
             <&gpio0 24 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
-            // 5: 空格 SPACE
+            //5 空格 SPACE
             <&gpio0 09 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
-            // 6: F
+            //6 F
             <&gpio1 04 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
-            // 7: E
+            //7 E
             <&gpio0 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
-            // 8: 上方向键 UP
+            //8 上方向 UP
             <&gpio0 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
-            // 9: 下方向键 DOWN
+            //9 下方向 DOWN
             <&gpio1 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
-            // 10: R
+            //10 R
             <&gpio1 00 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
-            // 11: ALT
+            //11 ALT
             <&gpio1 06 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
-            // 12: TAB
+            //12 TAB
             <&gpio1 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
     };
-};
-/ {
+
+    // 必须放在根节点下，ZMK才能识别layouts
     keymap {
         compatible = "zmk,keymap";
-
         default_layer {
             bindings =
                 &kp W,
