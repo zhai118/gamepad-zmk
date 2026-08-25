@@ -1,3 +1,0 @@
-targets:
-  - board: promicro_nrf52840
-    shield: gamepad
