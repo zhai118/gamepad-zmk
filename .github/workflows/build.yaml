@@ -6,29 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout zmk
-        uses: actions/checkout@v4
-        with:
-          repository: zmkfirmware/zmk
-          ref: main
-          path: zmk
-
-      - name: Checkout config
-        uses: actions/checkout@v4
-        with:
-          path: zmk/config
-
-      - name: Setup ZMK environment
-        uses: zmkfirmware/setup-zmk@main
-
-      - name: Build firmware
-        run: |
-          west build zmk/app -d build -b promicro_nrf52840 -- -DSHIELD=promicro_12key
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: firmware
-          path: build/zephyr/*.uf2
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    with:
+      board: promicro_nrf52840
+      shield: promicro_12key
