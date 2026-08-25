@@ -1,9 +1,16 @@
----
-include:
-  - github:zmkfirmware/zmk//.github/workflows/build-user-config.yml
+name: Build ZMK Firmware
 
-build:
-  targets:
-    - board: promicro_nrf52840//zmk
-      shield: gamepad_12key
-      artifact-name: gamepad-12key
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build firmware
+        uses: zmkfirmware/zmk-build-action@main
+        with:
+          board: promicro_nrf52840
+          shield: promicro_12key
