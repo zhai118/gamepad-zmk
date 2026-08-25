@@ -1,0 +1,16 @@
+name: Build ZMK Firmware
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build firmware
+        uses: zmkfirmware/zmk-build-action@main
+        with:
+          board: promicro_nrf52840
+          shield: promicro_12key
