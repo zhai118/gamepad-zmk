@@ -1,0 +1,4 @@
+---
+include:
+  - board: promicro_nrf52840
+    shield: promicro_12key
