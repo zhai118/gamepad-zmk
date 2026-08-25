@@ -1,2 +1,0 @@
-config SHIELD_PROMICRO_12KEY
-	def_bool $(shields_list_contains,promicro_12key)
