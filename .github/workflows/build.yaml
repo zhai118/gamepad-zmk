@@ -1,9 +1,9 @@
 name: Build ZMK Firmware
 
 on:
-  push:
-    branches: [ main ]
-
+  #push:
+  #  branches: [ main ]
+  workflow_dispatch:    # 只保留手动触发，网页出现 Run workflow 按钮
 jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
