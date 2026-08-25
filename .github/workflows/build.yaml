@@ -6,11 +6,21 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu‑latest
+    container:
+      image: zmkfirmware/zmk‑build:v0.4
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout user configuration
+        uses: actions/checkout@v4
+
       - name: Build firmware
-        uses: zmkfirmware/zmk-build-action@main
+        shell: bash
+        run: |
+          west build -d build -b promicro_nrf52840 -- -DSHIELD=promicro_12key
+          
+      - name: Upload firmware artifact
+        uses: actions/upload‑artifact@v4
         with:
-          board: promicro_nrf52840
-          shield: promicro_12key
+          name: firmware
+          path: build/zephyr/*.uf2
