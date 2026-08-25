@@ -1,40 +1,94 @@
 / {
-    compatible = "zmk,shield";
+    aliases {
+        zmk,bootloader = &sw0;
+    };
+
+    macros {
+        macro_ble_pair: macro_ble_pair {
+            compatible = "zmk,macro";
+            bindings = <
+                &kp TAB
+                &kp W
+                &kp S
+            >;
+        };
+        macro_ble_clear: macro_ble_clear {
+            compatible = "zmk,macro";
+            bindings = <
+                &kp TAB
+                &kp A
+                &kp D
+            >;
+        };
+    };
 
     keymap {
         compatible = "zmk,keymap";
+        label = "12KeyGamePad";
 
-        matrix_direct {
-            compatible = "zmk,matrix-direct";
-            //导电胶消抖15ms
-            debounce-press = <15>;
-            debounce-release = <15>;
+        key_w {
+            gpios = <&gpio0 17 GPIO_PULL_UP>;
+            bind = <&kp W>;
+        };
+        key_a {
+            gpios = <&gpio0 20 GPIO_PULL_UP>;
+            bind = <&kp A>;
+        };
+        key_s {
+            gpios = <&gpio0 22 GPIO_PULL_UP>;
+            bind = <&kp S>;
+        };
+        key_d {
+            gpios = <&gpio0 24 GPIO_PULL_UP>;
+            bind = <&kp D>;
+        };
+        key_space {
+            gpios = <&gpio0 09 GPIO_PULL_UP>;
+            bind = <&kp SPACE>;
+        };
+        key_f {
+            gpios = <&gpio1 04 GPIO_PULL_UP>;
+            bind = <&kp F>;
+        };
+        key_e {
+            gpios = <&gpio0 10 GPIO_PULL_UP>;
+            bind = <&kp E>;
+        };
+        key_up {
+            gpios = <&gpio0 11 GPIO_PULL_UP>;
+            bind = <&kp UP>;
+        };
+        key_down {
+            gpios = <&gpio1 11 GPIO_PULL_UP>;
+            bind = <&kp DOWN>;
+        };
+        key_r {
+            gpios = <&gpio1 00 GPIO_PULL_UP>;
+            bind = <&kp R>;
+        };
+        key_alt {
+            gpios = <&gpio1 06 GPIO_PULL_UP>;
+            bind = <&kp LALT>;
+        };
+        key_tab {
+            gpios = <&gpio1 13 GPIO_PULL_UP>;
+            bind = <&kp TAB>;
+        };
+    };
 
-            gpios =
-                <&gpio0 17 GPIO_ACTIVE_LOW>,  // W
-                <&gpio0 20 GPIO_ACTIVE_LOW>,  // A
-                <&gpio0 22 GPIO_ACTIVE_LOW>,  // S
-                <&gpio0 24 GPIO_ACTIVE_LOW>,  // D
-                <&gpio0 9  GPIO_ACTIVE_LOW>,  // SPACE
-                <&gpio1 4  GPIO_ACTIVE_LOW>,  // F
-                <&gpio0 10 GPIO_ACTIVE_LOW>,  // E
-                <&gpio0 11 GPIO_ACTIVE_LOW>,  // UP
-                <&gpio1 11 GPIO_ACTIVE_LOW>,  // DOWN
-                <&gpio1 0  GPIO_ACTIVE_LOW>,  // R
-                <&gpio1 6  GPIO_ACTIVE_LOW>,  // LALT
-                <&gpio1 13 GPIO_ACTIVE_LOW>;  // TAB
+    combos {
+        compatible = "zmk,combos";
+
+        combo_ble_pair {
+            timeout-ms = 200;
+            keys = <&kp TAB &kp W &kp S>;
+            bindings = <&bt BT_CLEAR_BONDS &bt BT_NEW_BOND>;
         };
 
-        macros {
-            compatible = "zmk,macros";
-            // Tab+W+S：蓝牙配对
-            macro_pair: macro_pair {
-                bindings = <&bt BT_CLEAR_BONDS>, <&bt BT_NEW_BOND>;
-            };
-            // Tab+A+D：清除全部配对
-            macro_clear: macro_clear {
-                bindings = <&bt BT_CLEAR_BONDS>;
-            };
+        combo_ble_clear {
+            timeout-ms = 200;
+            keys = <&kp TAB &kp A &kp D>;
+            bindings = <&bt BT_CLEAR_BONDS>;
         };
     };
 };
