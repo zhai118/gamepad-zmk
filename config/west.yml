@@ -9,5 +9,3 @@ manifest:
       import: app/west.yml
   self:
     path: config
-    import:
-      - boards
