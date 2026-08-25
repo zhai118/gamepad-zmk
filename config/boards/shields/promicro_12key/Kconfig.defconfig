@@ -1,0 +1,6 @@
+if SHIELD_PROMICRO_12KEY
+
+config ZMK_KEYBOARD_NAME
+	default "12key‑gamepad"
+
+endif
