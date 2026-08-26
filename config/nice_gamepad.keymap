@@ -1,0 +1,39 @@
+#include <dt-bindings/zmk/keys.h>
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+        default_layer {
+            bindings = <
+                &kp W
+                &kp A
+                &kp S
+                &kp D
+                &kp SPACE
+                &kp F
+                &kp E
+                &kp UP
+                &kp DOWN
+                &kp R
+                &kp LALT
+                &kp TAB
+            >;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+        /* Tab(11) + W(0) + S(2) → 开启蓝牙配对广播 */
+        combo_bt_pair {
+            timeout-ms = <100>;
+            key-positions = <11 0 2>;
+            bindings = <&macro_bt_pair>;
+        };
+        /* Tab(11) + A(1) + D(3) →清除蓝牙配对 */
+        combo_bt_clear {
+            timeout-ms = <100>;
+            key-positions = <11 1 3>;
+            bindings = <&macro_bt_clear>;
+        };
+    };
+};
