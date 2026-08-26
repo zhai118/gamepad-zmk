@@ -1,0 +1,24 @@
+if SHIELD_NICE_GAMEPAD
+
+config ZMK_KEYBOARD_NAME
+    default "NiceNano‑Gamepad"
+
+config ZMK_BLE
+    default y
+
+config ZMK_USB
+    default y
+
+# 低功耗优化
+config ZMK_BLE_ADV_INTERVAL_MIN
+    default 0x0020
+config ZMK_BLE_ADV_INTERVAL_MAX
+    default 0x0030
+
+config ZMK_IDLE_SLEEP_TIMEOUT
+    default 30000
+
+config ZMK_BLE_TX_POWER
+    default 0
+
+endif
