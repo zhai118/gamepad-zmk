@@ -1,0 +1,27 @@
+/ {
+    chosen {
+        zmk,kscan = &kscan_gpio;
+    };
+
+    kscan_gpio: kscan-gpio-keys {
+        compatible = "zmk,kscan-gpio-keys";
+
+        keys = <
+            ZMK_GPIO_KEY(P0_17, 0)  /* W index0 */
+            ZMK_GPIO_KEY(P0_20, 1)  /* A index1 */
+            ZMK_GPIO_KEY(P0_22, 2)  /* S index2 */
+            ZMK_GPIO_KEY(P0_24, 3)  /* D index3 */
+            ZMK_GPIO_KEY(P0_09,  4)  /* SPACE index4 */
+            ZMK_GPIO_KEY(P1_04,  5)  /* F index5 */
+            ZMK_GPIO_KEY(P0_10,  6)  /* E index6 */
+            ZMK_GPIO_KEY(P0_11,  7)  /* UP index7 */
+            ZMK_GPIO_KEY(P1_11,  8)  /* DOWN index8 */
+            ZMK_GPIO_KEY(P1_00,  9)  /* R index9 */
+            ZMK_GPIO_KEY(P1_06, 10)  /* LALT index10 */
+            ZMK_GPIO_KEY(P1_13, 11)  /* TAB index11 */
+        >;
+
+        /* 导电胶按键：按下引脚拉低，ACTIVE_LOW */
+        gpio-active-state = <GPIO_ACTIVE_LOW>;
+    };
+};
