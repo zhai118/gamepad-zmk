@@ -1,3 +1,0 @@
-config SHIELD_NICE_GAMEPAD
-    bool "NiceNano Gamepad 12keys"
-    select ZMK_KSCAN_GPIO_DRIVER
