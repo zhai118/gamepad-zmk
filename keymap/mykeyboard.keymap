@@ -1,0 +1,42 @@
+#include <zmk/keymap.h>
+#include <zmk/combos.h>
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+
+        combo_ble_pair {
+            timeout-ms = <100>;
+            keys = <KC_TAB KC_W KC_S>;
+            bindings = <&bt BT_NEW_PAIR>;
+        };
+
+        combo_ble_clear {
+            timeout-ms = <100>;
+            keys = <KC_TAB KC_A KC_D>;
+            bindings = <&bt BT_CLEAR_BONDS>;
+        };
+    };
+};
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+        default_layer {
+            bindings = <
+                &kp KC_W
+                &kp KC_A
+                &kp KC_S
+                &kp KC_D
+                &kp KC_SPACE
+                &kp KC_F
+                &kp KC_E
+                &kp KC_UP
+                &kp KC_DOWN
+                &kp KC_R
+                &kp KC_LALT
+                &kp KC_TAB
+            >;
+        };
+    };
+};
