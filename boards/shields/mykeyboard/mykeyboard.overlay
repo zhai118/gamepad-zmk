@@ -1,0 +1,74 @@
+/ {
+    chosen {
+        zmk,kbd = &kbd0;
+    };
+
+    kbd0: keyboard {
+        compatible = "zmk,gpio-keyboard";
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        debounce-ms = <15>;
+
+        key_0 {
+            gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
+            label = "w";
+            bindings = <&kp KC_W>;
+        };
+        key_1 {
+            gpios = <&gpio0 20 GPIO_ACTIVE_LOW>;
+            label = "a";
+            bindings = <&kp KC_A>;
+        };
+        key_2 {
+            gpios = <&gpio0 22 GPIO_ACTIVE_LOW>;
+            label = "s";
+            bindings = <&kp KC_S>;
+        };
+        key_3 {
+            gpios = <&gpio0 24 GPIO_ACTIVE_LOW>;
+            label = "d";
+            bindings = <&kp KC_D>;
+        };
+        key_4 {
+            gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
+            label = "space";
+            bindings = <&kp KC_SPACE>;
+        };
+        key_5 {
+            gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;
+            label = "f";
+            bindings = <&kp KC_F>;
+        };
+        key_6 {
+            gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
+            label = "e";
+            bindings = <&kp KC_E>;
+        };
+        key_7 {
+            gpios = <&gpio0 11 GPIO_ACTIVE_LOW>;
+            label = "up";
+            bindings = <&kp KC_UP>;
+        };
+        key_8 {
+            gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
+            label = "down";
+            bindings = <&kp KC_DOWN>;
+        };
+        key_9 {
+            gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
+            label = "r";
+            bindings = <&kp KC_R>;
+        };
+        key_10 {
+            gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
+            label = "alt";
+            bindings = <&kp KC_LALT>;
+        };
+        key_11 {
+            gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
+            label = "tab";
+            bindings = <&kp KC_TAB>;
+        };
+    };
+};
