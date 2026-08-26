@@ -1,4 +1,4 @@
 ---
 include:
   - board: nice_nano_v2
-    shield: nice_gamepad
+    shield: your_shield_name
