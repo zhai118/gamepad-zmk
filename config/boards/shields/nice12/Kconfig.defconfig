@@ -1,0 +1,9 @@
+if SHIELD_NICE12
+
+config ZMK_KEYBOARD
+    default y
+
+config ZMK_KEYMAP_NAME
+    default "nice12"
+
+endif
