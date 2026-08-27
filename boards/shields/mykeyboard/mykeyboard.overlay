@@ -1,74 +1,69 @@
+/dts-v1/;
+#include <nordic/nrf52840_qiaa.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
 / {
     chosen {
-        zmk,kbd = &kbd0;
+        zmk,kscan = &direct_kscan;
+        zmk,matrix-transform = &default_transform;
     };
 
-    kbd0: keyboard {
-        compatible = "zmk,gpio-keyboard";
+    // 直接引脚扫描（12键独立）
+    direct_kscan: direct_kscan {
+        compatible = "zmk,kscan-gpio-direct";
+        debounce-delay-ms = <15>;
+        input-gpios = 
+            <&gpio0 17 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            <&gpio0 20 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            <&gpio0 22 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            <&gpio0 24 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            <&gpio0 9  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            <&gpio1 4  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            <&gpio0 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            <&gpio0 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            <&gpio1 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            <&gpio1 0  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            <&gpio1 6  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            <&gpio1 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    };
+
+    // 矩阵变换（一行12列）
+    default_transform: keymap_transform_0 {
+        compatible = "zmk,matrix-transform";
+        columns = <12>;
+        rows = <1>;
+        map = <
+            RC(0,0) RC(0,1) RC(0,2) RC(0,3)
+            RC(0,4) RC(0,5) RC(0,6) RC(0,7)
+            RC(0,8) RC(0,9) RC(0,10) RC(0,11)
+        >;
+    };
+
+    // 组合键定义（三键组合）
+    combos {
+        compatible = "zmk,combos";
         #address-cells = <1>;
         #size-cells = <0>;
 
-        debounce-ms = <15>;
+        combo_bt_pair: combo_bt_pair {
+            timeout-ms = <50>;
+            key-positions = <11 0 1>;  // Tab(11) + W(0) + S(2) 
+            bindings = <&bt BT_SEL 0>;
+        };
 
-        key_0 {
-            gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
-            label = "w";
-            bindings = <&kp KC_W>;
-        };
-        key_1 {
-            gpios = <&gpio0 20 GPIO_ACTIVE_LOW>;
-            label = "a";
-            bindings = <&kp KC_A>;
-        };
-        key_2 {
-            gpios = <&gpio0 22 GPIO_ACTIVE_LOW>;
-            label = "s";
-            bindings = <&kp KC_S>;
-        };
-        key_3 {
-            gpios = <&gpio0 24 GPIO_ACTIVE_LOW>;
-            label = "d";
-            bindings = <&kp KC_D>;
-        };
-        key_4 {
-            gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
-            label = "space";
-            bindings = <&kp KC_SPACE>;
-        };
-        key_5 {
-            gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;
-            label = "f";
-            bindings = <&kp KC_F>;
-        };
-        key_6 {
-            gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
-            label = "e";
-            bindings = <&kp KC_E>;
-        };
-        key_7 {
-            gpios = <&gpio0 11 GPIO_ACTIVE_LOW>;
-            label = "up";
-            bindings = <&kp KC_UP>;
-        };
-        key_8 {
-            gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
-            label = "down";
-            bindings = <&kp KC_DOWN>;
-        };
-        key_9 {
-            gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
-            label = "r";
-            bindings = <&kp KC_R>;
-        };
-        key_10 {
-            gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
-            label = "alt";
-            bindings = <&kp KC_LALT>;
-        };
-        key_11 {
-            gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
-            label = "tab";
-            bindings = <&kp KC_TAB>;
+        combo_bt_clear: combo_bt_clear {
+            timeout-ms = <50>;
+            key-positions = <11 0 3>;  // Tab(11) + A(1) + D(3)
+            bindings = <&bt BT_CLR>;
         };
     };
+};
+
+// 引脚别名（方便调试）
+&gpio0 {
+    status = "okay";
+};
+&gpio1 {
+    status = "okay";
 };
