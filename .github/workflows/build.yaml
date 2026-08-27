@@ -1,4 +1,4 @@
-name: Build ZMK firmware
+name: Build ZMK Firmware
 
 on:
   push:
@@ -8,7 +8,37 @@ on:
   workflow_dispatch:
 
 jobs:
+  matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.gen.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: gen
+        uses: zmkfirmware/config-matrix-action@main
+
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
-    with:
-      config_revision: ${{ github.sha }}
+    needs: matrix
+    runs-on: ubuntu-latest
+    container:
+      image: zmkfirmware/zmk-build-arm:2.5
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.matrix.outputs.matrix) }}
+    steps:
+      - name: Checkout config
+        uses: actions/checkout@v4
+
+      - name: Build
+        id: build
+        run: |
+          if [ -n "${{ matrix.shield }}" ]; then
+            EXTRA_CMAKE_ARGS="-DSHIELD=${{ matrix.shield }}"
+          fi
+          west build -b ${{ matrix.board }} zmk/app -- -DZMK_CONFIG="${{ github.workspace }}" ${EXTRA_CMAKE_ARGS} ${{ matrix.cmake-args }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact-name || format('zmk_{0}_{1}', matrix.board, matrix.shield) }}
+          path: build/zephyr/*.uf2
