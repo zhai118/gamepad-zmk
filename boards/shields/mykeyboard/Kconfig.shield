@@ -1,3 +1,2 @@
 config SHIELD_MYKEYBOARD
-    def_bool y
-    depends on BOARD_NICE_NANO_V2
+    def_bool $(shields_list_contains,nice12)
