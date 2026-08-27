@@ -1,4 +1,4 @@
-name: Build ZMK Firmware
+name: Build ZMK firmware
 
 on:
   push:
@@ -9,13 +9,6 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Build ZMK Firmware
-        uses: zmkfirmware/actions/build@v2
-        with:
-          zmk_ref: v0.15.0
-          config_path: ${{ github.workspace }}
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.15.0
+    with:
+      config_revision: ${{ github.sha }}
