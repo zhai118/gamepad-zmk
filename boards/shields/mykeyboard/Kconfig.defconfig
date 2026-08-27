@@ -1,9 +1,0 @@
-if SHIELD_MYKEYBOARD
-
-config ZMK_KEYBOARD
-    default y
-
-config ZMK_KEYMAP_NAME
-    default "mykeyboard"
-
-endif
