@@ -1,2 +1,0 @@
-config SHIELD_NICE12
-    def_bool $(shields_list_contains,nice12)
