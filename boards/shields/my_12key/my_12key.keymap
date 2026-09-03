@@ -1,0 +1,21 @@
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+                &mo 1      &kp W      &kp S      &kp A
+                &kp D      &kp F      &kp G      &kp H
+                &kp J      &kp K      &kp L      &kp ENTER
+            >;
+        };
+
+        layer1 {
+            bindings = <
+                &trans     &bt BT_CLEAR_BONDS  &bt BT_NEW_ADV  &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+            >;
+        };
+    };
+};
