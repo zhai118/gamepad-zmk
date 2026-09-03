@@ -1,2 +1,3 @@
 config SHIELD_MY_12KEY
     def_bool y
+    depends on BOARD_NICENANO_V2
