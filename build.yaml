@@ -1,4 +1,3 @@
----
 zmk_revision: main
 include:
   - board: nice_nano/nrf52840
