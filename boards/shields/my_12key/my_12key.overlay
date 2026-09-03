@@ -26,20 +26,4 @@
 			key11{ gpios = <&gpio1 13 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
 		};
 	};
-
-	combos {
-		compatible = "zmk,combos";
-		/* TAB(11) + A(1) → 清除配对 */
-		combo_bt_clear {
-			timeout-ms = <50>;
-			keys = <11 1>;
-			bindings = <&bt BT_CLEAR_BONDS>;
-		};
-		/* TAB(11) + S(2) → 开启蓝牙广播配对 */
-		combo_bt_advert {
-			timeout-ms = <50>;
-			keys = <11 2>;
-			bindings = <&bt BT_NEW_ADV>;
-		};
-	};
 };
