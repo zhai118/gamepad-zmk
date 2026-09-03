@@ -1,27 +1,21 @@
-#include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/bt.h>
-
 / {
-    combos {
-        compatible = "zmk,combos";
-        combo_ble_pair {
-            timeout-ms = <60>;
-            key‑positions = <0 2 11>; /* Tab + W + S */
-            bindings = <&bt BT_SEL 0>;
-        };
-        combo_ble_clear {
-            timeout-ms = <60>;
-            key‑positions = <0 1 10>; /* Tab + A + D */
-            bindings = <&bt BT_CLR_ALL>;
-        };
-    };
     keymap {
         compatible = "zmk,keymap";
-        label ="Default";
+
         default_layer {
             bindings = <
-                &kp W  &kp A  &kp S  &kp D  &kp SPACE &kp F
-                &kp E  &kp UP &kp DOWN &kp R &kp LALT &kp TAB
+                &kp A
+                &kp B
+                &kp C
+                &kp D
+                &kp E
+                &kp F
+                &kp G
+                &kp H
+                &kp I
+                &kp J
+                &kp K
+                &kp L
             >;
         };
     };
