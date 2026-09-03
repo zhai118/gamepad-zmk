@@ -1,31 +1,40 @@
 #include <dt-bindings/gpio/gpio.h>
-#include <dt-bindings/zmk/gpio_direct.h>
 
 / {
-    chosen {
-        zmk,kscan = &kscan_direct;
-    };
+	chosen {
+		zmk,kscan = &kscan_gpio;
+	};
 
-    kscan_direct: kscan_gpio_direct {
-        compatible = "zmk,kscan-gpio-direct";
-        debounce-press-ms = <70>;
-        debounce-release-ms = <70>;
+	kscan_gpio: kscan_gpio_keys {
+		compatible = "zmk,kscan-gpio-keys";
+		debounce-press-ms = <15>;
+		debounce-release-ms = <15>;
 
-        keys {
-            key0 {gpios = <&gpio0 6 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
-            key1 {gpios = <&gpio0 7 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
-            key2 {gpios = <&gpio0 8 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
-            key3 {gpios = <&gpio0 9 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
-
-            key4 {gpios = <&gpio0 10 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
-            key5 {gpios = <&gpio0 11 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
-            key6 {gpios = <&gpio0 12 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
-            key7 {gpios = <&gpio0 13 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
-
-            key8 {gpios = <&gpio0 14 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
-            key9 {gpios = <&gpio0 15 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
-            key10 {gpios = <&gpio0 16 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
-            key11 {gpios = <&gpio0 17 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
-        };
-    };
+		keys {
+			/* W  P0.17 */
+			key0 { gpios = <&gpio0 17 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+			/* A  P0.20 */
+			key1 { gpios = <&gpio0 20 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+			/* S  P0.22 */
+			key2 { gpios = <&gpio0 22 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+			/* D  P0.24 */
+			key3 { gpios = <&gpio0 24 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+			/* SPACE P0.09 */
+			key4 { gpios = <&gpio0  9 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+			/* F  P1.04 */
+			key5 { gpios = <&gpio1  4 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+			/* E  P0.10 */
+			key6 { gpios = <&gpio0 10 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+			/* UP P0.11 */
+			key7 { gpios = <&gpio0 11 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+			/* DOWN P1.11 */
+			key8 { gpios = <&gpio1 11 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+			/* R  P1.00 */
+			key9 { gpios = <&gpio1  0 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+			/* ALT P1.06 */
+			key10{ gpios = <&gpio1  6 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+			/* TAB P1.13 */
+			key11{ gpios = <&gpio1 13 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+		};
+	};
 };
