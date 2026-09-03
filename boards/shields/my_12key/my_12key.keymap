@@ -1,0 +1,15 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/kscan_mock.h>
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+        label ="Default";
+        default_layer {
+            bindings = <
+                &kp W  &kp A  &kp S  &kp D  &kp SPACE &kp F
+                &kp E  &kp UP &kp DOWN &kp R &kp LALT &kp TAB
+            >;
+        };
+    };
+};
