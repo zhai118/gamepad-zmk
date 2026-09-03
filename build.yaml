@@ -1,3 +1,3 @@
 include:
   - board: nice_nano//zmk
-    shield: my_12key
+    keymap: my_12key.keymap
