@@ -1,0 +1,31 @@
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/zmk/gpio_direct.h>
+
+/ {
+    chosen {
+        zmk,kscan = &kscan_direct;
+    };
+
+    kscan_direct: kscan_gpio_direct {
+        compatible = "zmk,kscan-gpio-direct";
+        debounce-press-ms = <70>;
+        debounce-release-ms = <70>;
+
+        keys {
+            key0 {gpios = <&gpio0 6 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
+            key1 {gpios = <&gpio0 7 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
+            key2 {gpios = <&gpio0 8 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
+            key3 {gpios = <&gpio0 9 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
+
+            key4 {gpios = <&gpio0 10 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
+            key5 {gpios = <&gpio0 11 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
+            key6 {gpios = <&gpio0 12 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
+            key7 {gpios = <&gpio0 13 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
+
+            key8 {gpios = <&gpio0 14 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
+            key9 {gpios = <&gpio0 15 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
+            key10 {gpios = <&gpio0 16 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
+            key11 {gpios = <&gpio0 17 GPIO_ACTIVE_LOW GPIO_PULL_UP>;};
+        };
+    };
+};
