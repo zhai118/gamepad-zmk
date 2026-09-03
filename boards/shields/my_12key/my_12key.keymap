@@ -1,39 +1,42 @@
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
 / {
-	keymap {
-		compatible = "zmk,keymap";
+        keymap {
+                compatible = "zmk,keymap";
 
-		default_layer {
-			bindings = <
-				&kp W        /*0 W*/
-				&kp A        /*1 A*/
-				&kp S        /*2 S*/
-				&kp D        /*3 D*/
-				&kp SPACE    /*4 SPACE*/
-				&kp F        /*5 F*/
-				&kp E        /*6 E*/
-				&kp UP       /*7 UP*/
-				&kp DOWN     /*8 DOWN*/
-				&kp R        /*9 R*/
-				&kp LALT     /*10 ALT*/
-				&mo 1        /*11 TAB 切换layer1*/
-			>;
-		};
+                default_layer {
+                        bindings = <
+                                &kp W
+                                &kp A
+                                &kp S
+                                &kp D
+                                &kp SPACE
+                                &kp F
+                                &kp E
+                                &kp UP
+                                &kp DOWN
+                                &kp R
+                                &kp LALT
+                                &mo TAB
+                        >;
+                };
 
-		layer1 {
-			bindings = <
-				&trans
-				&bt BT_CLEAR_BONDS  /*按住Tab，按A：清除配对*/
-				&bt BT_NEW_ADV      /*按住Tab，按S：开启蓝牙广播配对*/
-				&trans
-				&trans
-				&trans
-				&trans
-				&trans
-				&trans
-				&trans
-				&trans
-				&trans
-			>;
-		};
-	};
+                layer1 {
+                        bindings = <
+                                &trans
+                                &bt BT_CLEAR_BONDS
+                                &bt BT_NEW_ADV
+                                &trans
+                                &trans
+                                &trans
+                                &trans
+                                &trans
+                                &trans
+                                &trans
+                                &trans
+                                &trans
+                        >;
+                };
+        };
 };
