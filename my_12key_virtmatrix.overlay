@@ -1,0 +1,31 @@
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+    };
+
+    kscan0: kscan_virtual_matrix {
+        compatible = "zmk,kscan-virtual-matrix";
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        /* 虚拟 3行 ×4列 =12键，硬件无矩阵接线 */
+        row-size = <3>;
+        col-size = <4>;
+
+        /* ---- 12个独立GPIO，修改为你实际引脚 ---- */
+        key0 { reg = <0>; gpios = <&gpio0  17 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+        key1 { reg = <1>; gpios = <&gpio0  20 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+        key2 { reg = <2>; gpios = <&gpio0  22 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+        key3 { reg = <3>; gpios = <&gpio0  24 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+
+        key4 { reg = <4>; gpios = <&gpio0 9 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+        key5 { reg = <5>; gpios = <&gpio1 4 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+        key6 { reg = <6>; gpios = <&gpio0 10 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+        key7 { reg = <7>; gpios = <&gpio0 11 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+
+        key8 { reg = <8>; gpios = <&gpio1 11 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+        key9 { reg = <9>; gpios = <&gpio1 0 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+        key10{ reg = <10>;gpios = <&gpio1 6 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+        key11{ reg = <11>;gpios = <&gpio1 13 GPIO_ACTIVE_LOW GPIO_PULL_UP>; };
+    };
+};
