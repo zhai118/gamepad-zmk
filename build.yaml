@@ -1,5 +1,5 @@
 zmk_revision: main
 include:
   - board: nice_nano/nrf52840
-  shield: my_12key
+    shield: my_12key
 keymap: my_12key.keymap.json
