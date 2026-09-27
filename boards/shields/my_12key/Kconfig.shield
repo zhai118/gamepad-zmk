@@ -1,3 +1,0 @@
-config SHIELD_MY_12KEY
-        bool "my12key 12gpio conductive rubber shield"
-        select ZMK_KSCAN_GPIO_KEYS
