@@ -1,5 +1,4 @@
 include:
   - board: nice_nano
     zmk_revision: v0.3.0
-    keymap: k14.keymap.json
     config: config
