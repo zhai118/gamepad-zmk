@@ -1,5 +1,5 @@
 zmk_revision: v0.3.0
 include:
   - board: nice_nano/nrf52840
-    shield: k14
+    cmake-args: -DZMK_CONFIG=config/k14
 keymap: k14.keymap.json
