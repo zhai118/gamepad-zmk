@@ -1,0 +1,10 @@
+{
+  "layers": [
+    [
+      "ALT", "W", "A", "S",
+      "LEFT", "D", "TAB", "E",
+      "SPC", "UP", "R", "DOWN",
+      "RIGHT", "F", "NO", "NO"
+    ]
+  ]
+}
