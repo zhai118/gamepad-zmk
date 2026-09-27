@@ -1,4 +1,5 @@
-zmk_revision: main
-board: nice_nano/nrf52840
-shield: my_12key
-keymap: my_12key.keymap.json
+zmk_revision: v0.3.0
+include:
+  - board: nice_nano/nrf52840
+    shield: k14
+keymap: k14.keymap.json
