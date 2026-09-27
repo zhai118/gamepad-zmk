@@ -1,25 +1,22 @@
 #include <dt-bindings/gpio/gpio.h>
-#include <dt-bindings/zmk/kscan_macro.h>
 #include <dt-bindings/zmk/keys.h>
 
 / {
-    compatible = "nice_nano,nice_nano_v2";
-
     kscan_0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         status = "okay";
 
         row-gpios =
-            <&gpio0 28 GPIO_ACTIVE_HIGH>,  // R0
-            <&gpio0 29 GPIO_ACTIVE_HIGH>,  // R1
-            <&gpio0 30 GPIO_ACTIVE_HIGH>,  // R2
-            <&gpio0 31 GPIO_ACTIVE_HIGH>;  // R3
+            <&gpio0 28 GPIO_ACTIVE_HIGH>,
+            <&gpio0 29 GPIO_ACTIVE_HIGH>,
+            <&gpio0 30 GPIO_ACTIVE_HIGH>,
+            <&gpio0 31 GPIO_ACTIVE_HIGH>;
 
         col-gpios =
-            <&gpio0 2 GPIO_ACTIVE_LOW>,    // C0
-            <&gpio0 3 GPIO_ACTIVE_LOW>,    // C1
-            <&gpio0 4 GPIO_ACTIVE_LOW>,    // C2
-            <&gpio0 5 GPIO_ACTIVE_LOW>;    // C3
+            <&gpio0 2 GPIO_ACTIVE_LOW>,
+            <&gpio0 3 GPIO_ACTIVE_LOW>,
+            <&gpio0 4 GPIO_ACTIVE_LOW>,
+            <&gpio0 5 GPIO_ACTIVE_LOW>;
 
         debounce-press-ms = <5>;
         debounce-release-ms = <5>;
@@ -29,25 +26,10 @@
         compatible = "zmk,keymap";
         default_layer {
             bindings = <
-                &kp W    // R0C1 w
-                &kp A    // R0C2 a
-                &kp S    // R0C3 s
-                &kp ALT  // R0C0 alt
-
-                &kp D    // R1C1 d
-                &kp LEFT // R1C0 左
-                &kp TAB  // R1C2 tab
-                &kp E    // R1C3 e
-
-                &kp UP   // R2C1 上
-                &kp SPACE// R2C0 空格
-                &kp R    // R2C2 r
-                &kp DOWN // R2C3 下
-
-                &kp F    // R3C1 f
-                &kp RIGHT// R3C0 右
-                &trans   // R3C2 空位
-                &trans   // R3C3 空位
+&kp ALT,  &kp W,    &kp A,    &kp S,
+&kp LEFT, &kp D,    &kp TAB,  &kp E,
+&kp SPACE,&kp UP,   &kp R,    &kp DOWN,
+&kp RIGHT,&kp F,    &trans,   &trans
             >;
         };
     };
