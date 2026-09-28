@@ -9,7 +9,7 @@
                     <&gpio0 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
                     <&gpio0 8 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
                     <&gpio0 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        debounce-period = <5>;
+        debounce-period = <30>;  // 修改为30ms消抖
     };
 
     matrix_transform: matrix-transform {
@@ -18,20 +18,36 @@
         rows = <4>;
         columns = <4>;
         map = <
-            0 1 2 3
-            4 5 6 7
-            8 9 10 11
-            12 13 0 0
+            0  1  2  3
+            4  5  6  7
+            8  9 10 11
+            12 13
         >;
     };
 
     physical_layout {
         compatible = "zmk,physical-layout";
         layout = <
-            0 1 2 3
-            4 5 6 7
-            8 9 10 11
+            0  1  2  3
+            4  5  6  7
+            8  9 10 11
             12 13
         >;
+    };
+
+    // ========== 新增 keymap 节点，这就是报错的核心缺失部分 ==========
+    keymap {
+        compatible = "zmk,keymap";
+        layout = <&physical_layout>;
+        layers {
+            base {
+                bindings = <
+                    &kp N1 &kp N2 &kp N3 &kp N4
+                    &kp N5 &kp N6 &kp N7 &kp N8
+                    &kp N9 &kp N0 &kp MINUS &kp EQUAL
+                    &kp BSPC &kp ENTER
+                >;
+            };
+        };
     };
 };
