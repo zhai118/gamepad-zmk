@@ -1,40 +1,37 @@
-#include <dt-bindings/gpio/gpio.h>
-#include <dt-bindings/zmk/keys.h>
-
 / {
     kscan_0: kscan {
-        compatible = "zmk,kscan-gpio-matrix";
-        status = "okay";
-
-        row-gpios =
-            <&gpio0 28 GPIO_ACTIVE_HIGH>,
-            <&gpio0 29 GPIO_ACTIVE_HIGH>,
-            <&gpio0 30 GPIO_ACTIVE_HIGH>,
-            <&gpio0 31 GPIO_ACTIVE_HIGH>;
-
-        col-gpios =
-            <&gpio0 2 GPIO_ACTIVE_LOW>,
-            <&gpio0 3 GPIO_ACTIVE_LOW>,
-            <&gpio0 4 GPIO_ACTIVE_LOW>,
-            <&gpio0 5 GPIO_ACTIVE_LOW>;
-
-        debounce-press-ms = <5>;
-        debounce-release-ms = <5>;
+        compatible = "zmk,kscan-matrix";
+        row-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>,
+                    <&gpio0 3 GPIO_ACTIVE_HIGH>,
+                    <&gpio0 4 GPIO_ACTIVE_HIGH>,
+                    <&gpio0 5 GPIO_ACTIVE_HIGH>;
+        col-gpios = <&gpio0 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+                    <&gpio0 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+                    <&gpio0 8 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+                    <&gpio0 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        debounce-period = <5>;
     };
 
-    keymap {
-        compatible = "zmk,keymap";
-        default_layer {
-            bindings = <
-&kp ALT,  &kp W,    &kp A,    &kp S,
-&kp LEFT, &kp D,    &kp TAB,  &kp E,
-&kp SPACE,&kp UP,   &kp R,    &kp DOWN,
-&kp RIGHT,&kp F,    &trans,   &trans
-            >;
-        };
+    matrix_transform: matrix-transform {
+        compatible = "zmk,matrix-transform";
+        kscan = <&kscan_0>;
+        rows = <4>;
+        columns = <4>;
+        map = <
+            0 1 2 3
+            4 5 6 7
+            8 9 10 11
+            12 13 0 0
+        >;
     };
-};
 
-&zmk_keyboard {
-    kscan = <&kscan_0>;
+    physical_layout {
+        compatible = "zmk,physical-layout";
+        layout = <
+            0 1 2 3
+            4 5 6 7
+            8 9 10 11
+            12 13
+        >;
+    };
 };
